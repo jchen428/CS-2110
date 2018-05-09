@@ -1,0 +1,99 @@
+==================================================================================================================
+CS2110                                             Lab #23                                             Spring 2015
+==================================================================================================================
+
+Don't hesitate to ask the TA's for help. If you are stuck on
+one part, or not clear about what it's asking, feel free to
+ask. Remember, we are here to help you :)
+
+This is not a timed lab so talk with your friends, use the book, etc.
+
+You do not have to complete all of this lab, but please do as much as you can.
+
+
+Part I - Copying
+----------------
+1.  Examine the following structure:
+
+typedef struct
+{
+    int x;
+    void* y;
+} something;
+
+
+Examine this function that copies this structure into the dest parameter
+
+void copy_struct(const something* src, something* dest)
+{
+    *dest = *src;
+}
+
+void main(void)
+{
+    something a, b;
+    a.x = 32;
+    a.y = malloc(sizeof(char) * 6);
+    a.y[0] = 'H';
+    a.y[1] = 'E';
+    a.y[2] = 'L';
+    a.y[3] = 'L';
+    a.y[4] = 'O';
+    a.y[5] = '\0';
+
+
+    copy_struct(&a, &b);
+    printf("a.x = %d, a.y = %s, b.x = %d, b.y = %s\n", a.x, a.y, b.x, b.y);
+    a.x = 27;
+    a.y[0] = 'J';
+    printf("a.x = %d, a.y = %s, b.x = %d, b.y = %s\n", a.x, a.y, b.x, b.y);
+}
+
+
+a. Note that there is a problem with this code. Explain what the problem is. What gets printed out?  Explain why in your own words.
+Nothing gets printed. malloc(sizeof(char) * 6) needs to be cast to char*
+
+b. Now your boss walks in pissed and gives you 30 minutes to fix the above problem or you will be immediately terminated.
+   Change only the copy_struct function so that the problem in the above code does not happen!
+
+c. Suppose if the "something" structure was changed to be the following
+
+typedef struct
+{
+    int x;
+    char y[6];
+} something;
+
+and the line
+
+  a.y = malloc(sizeof(char) * 6);
+
+was removed, and the copy_struct function was the same as in part a.
+
+Now tell me what gets printed out and why in your own words.
+a.x = 32, a.y = HELLO, b.x = 32, b.y = HELLO
+
+d.  Now explain the terms "shallow copy" and "deep copy" in terms of parts a and b.
+A shallow copy only copies the pointer to a into b while a deep copy copies the pointers of everything in a into every corresponding address in b.
+
+Part II - sizeof
+----------------
+What is the sizeof each of these things?  Quickly! Do not use the book or a TA tell me what (you think) the sizes of these things are.
+
+1. char		1 byte
+2. short	2 bytes
+3. int		4 bytes
+4. long		8 bytes
+5. char*	8 bytes
+6. int*		8 bytes
+7. void*	8 bytes
+8. int**	8 bytes
+9. this structure struct p {char a; char b;};		2 bytes
+10. this structure struct p {short p; char a; int b;};	8 bytes
+
+Now write a C program (named sizeof.c) that tells us the size of each of these using the sizeof keyword and the printf function.
+How many of these did you get right?
+
+Why shouldn't you hardcode the sizes of the variable types?
+
+Save your answers as Lab23.txt and turn them in by the end of lab.

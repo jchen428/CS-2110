@@ -1,0 +1,143 @@
+Fall 2014 Practice Final -- Double check all answers
+
+1.
+int a;
+
+int static int b;
+const int c;
+volatile int d;
+
+int main(int argc, char** argv) {
+	auto int e;	//auto is optional?
+	static int f;
+	const int g;
+}
+
+int myVar;
+printf("%p\n", &myVar);
+
+2.
+void swap(int* a, int* b) {
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+int my_a = 4;
+int my_b = 6;
+swap(&my_a, &my_b);
+
+void swap(int** a, int** b) {
+	int* temp = *a;
+	*a = *b;
+	*b = temp;
+}
+int* my_a = 4;
+int* my_b = 6;
+swap(&my_a, &my_b);
+
+3.
+42
+	38
+		&a
+			&b
+					//No changes
+77
+	44
+				&a
+		&b
+			&a
+
+a = 77;
+b = 44;
+*p1 = 44;
+*p2 = 77
+*p4 = 77;
+
+4. Be able to trace the stack
+-1
+-1
+0
+-1
+0
+
+-2
+1
+0
+1
+5
+
+3
+
+0
+-1
+1
+1
+1
+2
+
+-1
+-1
+0
+4
+-1
+0
+
+0
+4
+R2
+3
+
+5.
+short pack(char a, char b) {
+	//Assumed b in upper 8 bits and a in lower 8 bits
+	//Reverse if other way
+	return (((short) b) << 8) | a;
+}
+
+Or as a macro:
+#define pack(a,b) ((((short)(b)) << 8) | (a))
+
+void unpack(short s, char* a, char* b) {
+	*a = (char) (s & 0xFF);
+	*b = (char) ((s >> 8) & 0xFF);
+}
+
+6. Understand malloc/realloc/etc. at least at a high level
+
+7.
+if (ptr == NULL)
+	return malloc(newsize);
+if (newsize == 0)
+	free(ptr);
+if (newsize > getAlloc(ptr))
+	//Copy up to getAlloc(ptr)
+else if (newsize <= getAlloc(ptr))
+	//Copy up to newsize
+
+8. Know function pointers, lists, etc.
+typedef void (*free_data)(void*);
+//	 ret type  function   params
+
+void empty_list(LIST* list, free_data func) {
+	NODE* curr = list->head;
+	while (curr) {
+		func(curr->data);
+		NODE* tmp = curr;
+		curr = curr->next;
+		free(tmp);
+	}
+	list->head = NULL;
+	list->tail = NULL;
+}
+
+9. Know different DMA stuff
+void fillScreen(volatile short c) {	//c must be volatile because the compiler will get rid of it otherwise since only its address is being used
+	DMA[3].src = &c;
+	DMA[3].dst = videoBuffer;
+	DMA[3].cnt = (240 * 160) | DMA_ON | DMA_SOURCE_FIXED;
+}
+
+10. GBA
+void setPixel(u16 row, u16 col, u16 color);
+void (*setPixelFp)(u16, u16, u16) = &setPixel; //& is optional
+setPixelFp(3, 4, COLOR(31, 0, 0));

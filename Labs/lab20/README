@@ -1,0 +1,28 @@
+==================================================================================================================
+CS2110                                             Lab #20                                             Spring 2015
+==================================================================================================================
+
+As you start making your gameboy game, you will often get in a situation where you want to debug your games.
+However, the GBA doesn't have a terminal that you can use printf to print to. We have to be a little bit more 
+creative with how we debug our games. 
+
+Two useful techniques to debug your GBA games are to light up pixels under certain conditions and to use the font 
+data to draw strings to the GBA's screen. We're going to have you do both in this lab.
+
+We have given you functions to set a pixel and draw a character/string to the GBA screen in the myLib file. For 
+this lab you need to do the following in the main.c file:
+
+1) When one of the d-pad buttons are pressed (up, down, left, right), set the pixel at location (10,10) to a certain 
+    color so that we know which button is being pressed currently.
+        Up = White
+        Down = Red
+        Left = Blue
+        Right = Green
+        
+2) When the A or B button is pressed, draw a string to the screen saying that the button has been pressed. When
+    the buttons haven't been pressed, no strings should be drawn to the screen. 
+
+
+You can run your game with "make vba". When you're done, run "make clean" and compress all your files into 
+lab20.tar.gz (or lab20.zip) and submit it to t-square.
+       

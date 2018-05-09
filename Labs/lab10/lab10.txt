@@ -1,0 +1,87 @@
+﻿CS2110 Lab #10                                                  Spring 2015
+===========================================================================
+#                            LC-3 Assembly                                #
+===========================================================================
+
+1. Getting a feel for assembly
+
+Assemble (by hand) all of the instructions for this program using the ISA
+reference in your book. You can find this online as well, it is Appendix A
+in the Patt Patel book.
+
+
+.orig x3000
+        LD R0, A        | x2006   <- like this
+        LD R1, B        | x2206
+        ADD R2, R1, R0  | x1440
+        NOT R2, R2      | x94BF
+        ADD R2, R0, R2  | x1402
+        ADD R2, R2, 1   | x14A1
+        HALT            | xF025
+
+        A .fill 45
+        B .fill 60
+.end
+
+What is the condition code (CC) at the end of this program?
+n
+
+
+===========================================================================
+
+2. Going the other way
+
+Disassemble the following instructions. For instructions that have offsets,
+just write out the number offsets. Don't worry about labels.
+
+x5020	| AND R0, R0, 0
+x5260   | AND R1, R1, 0
+x127f	| ADD R1, R1, -1
+x03fe	| BRp -2
+x2606	| LD R3, 6
+x60c0	| LDR R0, R3, 0
+x3010	| ST R0, 16
+xe002	| LEA R0, 2
+
+
+===========================================================================
+
+3. Writing an assembly program
+
+For this part we're going to write a simple LC-3 program that negates a number.
+Your program will load the number at the label N, negate it, and store the answer
+at the label ANS. The template file already has the labels set up. Write your
+program in your favorite text editor and test it with Complx.
+
+
+===========================================================================
+
+4. Writing an assembly program with branching! (optional challenge)
+
+For this part, you're going to write a program that takes in a positive number and
+returns 1 if the number is a multiple of four. If the number is not a multiple of
+four, the program returns 0. Take a look at the following c code:
+
+int multipleOfFour(int n){
+  while(n > 0){
+    n = n - 4;
+  }
+
+  if(n == 0)
+    return 1;
+  else
+    return 0;
+}
+
+Your program should load the number at label N, determine if N a multiple of four,
+and store either a 1 or a 0 at the label ANS.
+
+===========================================================================
+
+
+
+
+
+Submission:
+
+Save this lab10.txt, negate.asm, and optionally mult4.asm and submit it in the assignment on T-Square.

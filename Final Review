@@ -1,0 +1,157 @@
+Final Review
+
+===========================================================
+
+Recursion in Assembly - See old homework
+
+|	...		|
+|-----------|
+|	local3	|
+|-----------|
+|	local2	|
+|-----------|
+|	local1  |
+|-----------|
+|	OFP (R5)| <- R6
+|-----------|
+|	RA  (R7)|
+|-----------|
+|	RV		|
+|-----------|
+|	arg1	|
+|-----------|
+|	arg2	|
+|-----------|
+|	arg3	|
+|-----------|
+|	...		|
+
+RV will initially be empty and filled in later by
+subsequent recursive calls. The current frame pointer
+must always point at first local variable. The stack
+pointer (R6) should always point at the top of the stack
+as you push more things onto the stack.
+
+orig x3000
+MAIN
+	LD R6, STACK
+	LD R0, NUM
+	ADD R6, R6, -1
+	STR R0, R6, 0
+	JSR FIB
+	LDR R0, R6, 0
+	HALT
+
+STACK x6000
+NUM 5
+
+orig x5000
+FIB
+	;Pre-function stack setup
+	ADD R6, R6, -3
+	STR R5, R6, 0	;OFP
+	STR R7, R6, 1
+	ADD R5, R6, -1	;FP = SP - 1
+	ADD R6, R6, -3
+	STR R0, R5, 0
+	STR R1, R5, 1
+	STR R2, R5, 2
+
+	;Actual function operations here
+
+	;Post-function stack cleanup
+RET
+	LDR R2, R5, -2
+	LDR R2, R5, -2
+	ADD R6, R6, 3
+	STR R0, R5, 3
+	LDR R7, R5, 2
+	LDR R5, R5, 1
+	ADD R6, R6, 2
+	RET
+
+===========================================================
+
+C Keywords (static, volatile, etc.)
+
+===========================================================
+
+Macros
+
+Pre-compiler looks for pound #include and #define
+
+#include basically copies everything in the file into
+	current file
+#define is a glorified copy-paste
+
+#define MULT(a,b) ((a) * (b))
+
+No spaces until just the symbol is defined
+Doesn't know variable types
+Must have parentheses around everything since it is just
+	copy-pasting
+No semi-colons
+
+===========================================================
+
+Pointers
+
+===========================================================
+
+malloc/realloc (Buddy System)
+
+malloc
+	Always check for null pointer after malloc
+
+realloc
+	size = 0 -> free
+	ptr = NULL -> malloc
+
+===========================================================
+
+Pack/Unpack
+
+int pack(short a, short b) { //a = low bits, b = high bits
+	int packed = a;
+	packed = packed | b << (2 * 8); //2 bytes per short,
+									//8 bits per byte
+	return packed;
+}
+
+#define pack(a,b) ((a) | ((b) << 16))
+
+Unpack is similar, but you don't return anything, instead
+change pointers
+
+===========================================================
+
+Function Pointers
+
+int pack(short, short);	//Prototype
+
+int (*pack_p) (short, short)
+ ^		^			^
+ |	var name	parameters
+return type
+
+===========================================================
+
+typedef
+
+typedef int(*pack_p)(short, short);	//No name at the end
+									//if typedef'ing
+
+typedef unsigned short u16;
+			type 	new alias
+
+typedef struct point {
+	struct point* next;
+	int x, y;
+} POINT;
+
+===========================================================
+
+GBA drawBorderedRectangle
+
+DMA top and bottom lines
+setPixel for the sides

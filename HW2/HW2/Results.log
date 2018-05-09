@@ -1,0 +1,161 @@
+================
+Testing HW2Bases
+================
+
+Testing strdtoi:
+strdtoi(       654): Expected:      28E Result:      28E Correct:  true
+strdtoi(2147483647): Expected: 7FFFFFFF Result: 7FFFFFFF Correct:  true
+strdtoi(         0): Expected:        0 Result:        0 Correct:  true
+strdtoi( 555555555): Expected: 211D1AE3 Result: 211D1AE3 Correct:  true
+
+Testing strbtoi:
+strbtoi(                              0): Expected:        0 Result:        0 Correct:  true
+strbtoi(                           1011): Expected:        B Result:        B Correct:  true
+strbtoi(                        1001000): Expected:       48 Result:       48 Correct:  true
+strbtoi(1111111111111111111111111111111): Expected: 7FFFFFFF Result: 7FFFFFFF Correct:  true
+
+Testing strxtoi:
+strxtoi(       0): Expected:        0 Result:        0 Correct:  true
+strxtoi(      32): Expected:       32 Result:       32 Correct:  true
+strxtoi(  FEDCBA): Expected:   FEDCBA Result:   FEDCBA Correct:  true
+strxtoi(7FFFFFFF): Expected: 7FFFFFFF Result: 7FFFFFFF Correct:  true
+
+Testing itostrb:
+itostrb(       0): Expected:                               0 Result:                               0 Correct:  true
+itostrb(       E): Expected:                            1110 Result:                            1110 Correct:  true
+itostrb(      2A): Expected:                          101010 Result:                          101010 Correct:  true
+itostrb(7FFFFFFF): Expected: 1111111111111111111111111111111 Result: 1111111111111111111111111111111 Correct:  true
+
+Testing itostrx:
+itostrx(       0): Expected:        0 Result:        0 Correct:  true
+itostrx(      10): Expected:       10 Result:       10 Correct:  true
+itostrx(    FEED): Expected:     FEED Result:     FEED Correct:  true
+itostrx(7FFFFFFF): Expected: 7FFFFFFF Result: 7FFFFFFF Correct:  true
+
+=====================
+Testing HW2Operations
+=====================
+
+Testing setByte:
+setByte(   0, 1, 0): Expected:    1 Result:    1 Correct:  true
+setByte(33912280, 44, 1): Expected: 33914480 Result: 33914480 Correct:  true
+setByte(12345678, CF, 2): Expected: 12CF5678 Result: 12CF5678 Correct:  true
+setByte(56EFCAFE, BE, 3): Expected: BEEFCAFE Result: BEEFCAFE Correct:  true
+
+Testing getNibble:
+getNibble(10100292, 1): Expected:    9 Result:    9 Correct:  true
+getNibble(DEADBEEF, 5): Expected:    A Result:    A Correct:  true
+getNibble(DEADBEEF, 0): Expected:    F Result:    F Correct:  true
+getNibble(12345678, 7): Expected:    1 Result:    1 Correct:  true
+
+Testing pack:
+pack(12, 34, 56, 78): Expected: 12345678 Result: 12345678 Correct:  true
+pack(BA, 5E, BA, 11): Expected: BA5EBA11 Result: BA5EBA11 Correct:  true
+pack(CA, FE, BA, BE): Expected: CAFEBABE Result: CAFEBABE Correct:  true
+pack(AA, AA, CC, CC): Expected: AAAACCCC Result: AAAACCCC Correct:  true
+
+Testing abs:
+abs(    2110, 17): Expected:     2110 Result:     2110 Correct:  true
+abs(    1236, 13): Expected:      DCA Result:      DCA Correct:  true
+abs(3FFFFFFF, 31): Expected: 3FFFFFFF Result: 3FFFFFFF Correct:  true
+abs(7FFFFFFF, 31): Expected:        1 Result:        1 Correct:  true
+
+Testing xor:
+xor(FF00FF00,   FF00FF): Expected: FFFFFFFF Result: FFFFFFFF Correct:  true
+xor(12345678, 87654321): Expected: 95511559 Result: 95511559 Correct:  true
+xor(55555555, AAAA8888): Expected: FFFFDDDD Result: FFFFDDDD Correct:  true
+xor(55555555, 33333333): Expected: 66666666 Result: 66666666 Correct:  true
+
+Testing powerOf2:
+powerOf2(10000000): Expected:  true Result:  true Correct:  true
+powerOf2(      A0): Expected: false Result: false Correct:  true
+powerOf2(       8): Expected:  true Result:  true Correct:  true
+powerOf2(80000000): Expected: false Result: false Correct:  true
+powerOf2(       1): Expected:  true Result:  true Correct:  true
+powerOf2(12345678): Expected: false Result: false Correct:  true
+powerOf2(       0): Expected: false Result: false Correct:  true
+
+====================
+Testing HW2BitVector
+====================
+
+Testing set:
+set( 0): Bits:        0 Expected:        1 Result:        1 Correct:  true
+set( 1): Bits:        1 Expected:        3 Result:        3 Correct:  true
+set( 2): Bits:        3 Expected:        7 Result:        7 Correct:  true
+set( 3): Bits:        7 Expected:        F Result:        F Correct:  true
+set( 4): Bits:        F Expected:       1F Result:       1F Correct:  true
+set( 5): Bits:       1F Expected:       3F Result:       3F Correct:  true
+set( 6): Bits:       3F Expected:       7F Result:       7F Correct:  true
+set( 7): Bits:       7F Expected:       FF Result:       FF Correct:  true
+set( 8): Bits:       FF Expected:      1FF Result:      1FF Correct:  true
+set( 9): Bits:      1FF Expected:      3FF Result:      3FF Correct:  true
+set(10): Bits:      3FF Expected:      7FF Result:      7FF Correct:  true
+set(11): Bits:      7FF Expected:      FFF Result:      FFF Correct:  true
+set(12): Bits:      FFF Expected:     1FFF Result:     1FFF Correct:  true
+set(13): Bits:     1FFF Expected:     3FFF Result:     3FFF Correct:  true
+set(14): Bits:     3FFF Expected:     7FFF Result:     7FFF Correct:  true
+set(15): Bits:     7FFF Expected:     FFFF Result:     FFFF Correct:  true
+set(16): Bits:     FFFF Expected:    1FFFF Result:    1FFFF Correct:  true
+set(17): Bits:    1FFFF Expected:    3FFFF Result:    3FFFF Correct:  true
+set(18): Bits:    3FFFF Expected:    7FFFF Result:    7FFFF Correct:  true
+set(19): Bits:    7FFFF Expected:    FFFFF Result:    FFFFF Correct:  true
+set(20): Bits:    FFFFF Expected:   1FFFFF Result:   1FFFFF Correct:  true
+set(21): Bits:   1FFFFF Expected:   3FFFFF Result:   3FFFFF Correct:  true
+set(22): Bits:   3FFFFF Expected:   7FFFFF Result:   7FFFFF Correct:  true
+set(23): Bits:   7FFFFF Expected:   FFFFFF Result:   FFFFFF Correct:  true
+set(24): Bits:   FFFFFF Expected:  1FFFFFF Result:  1FFFFFF Correct:  true
+set(25): Bits:  1FFFFFF Expected:  3FFFFFF Result:  3FFFFFF Correct:  true
+set(26): Bits:  3FFFFFF Expected:  7FFFFFF Result:  7FFFFFF Correct:  true
+set(27): Bits:  7FFFFFF Expected:  FFFFFFF Result:  FFFFFFF Correct:  true
+set(28): Bits:  FFFFFFF Expected: 1FFFFFFF Result: 1FFFFFFF Correct:  true
+set(29): Bits: 1FFFFFFF Expected: 3FFFFFFF Result: 3FFFFFFF Correct:  true
+set(30): Bits: 3FFFFFFF Expected: 7FFFFFFF Result: 7FFFFFFF Correct:  true
+set(31): Bits: 7FFFFFFF Expected: FFFFFFFF Result: FFFFFFFF Correct:  true
+
+Testing clear:
+clear(19): Bits: FFFFFFFF Expected: FFF7FFFF Result: FFF7FFFF Correct:  true
+clear(21): Bits: FFF7FFFF Expected: FFD7FFFF Result: FFD7FFFF Correct:  true
+
+Testing toggle:
+toggle( 0): Bits: FFFFFFFF Expected: FFFFFFFE Result: FFFFFFFE Correct:  true
+toggle( 0): Bits: FFFFFFFE Expected: FFFFFFFF Result: FFFFFFFF Correct:  true
+toggle(12): Bits: ABCDEFFF Expected: ABCDFFFF Result: ABCDFFFF Correct:  true
+toggle(30): Bits: ABCDEFFF Expected: EBCDEFFF Result: EBCDEFFF Correct:  true
+
+Testing isSet:
+isSet(20): Bits:   100000 Expected:  true Result:  true Correct:  true
+isSet( 0): Bits: 55555555 Expected:  true Result:  true Correct:  true
+isSet(31): Bits: 753A96CB Expected: false Result: false Correct:  true
+isSet(32): Bits: FFFFFFFF Expected: false Result: false Correct:  true
+
+Testing isClear:
+isClear(20): Bits:   100000 Expected: false Result: false Correct:  true
+isClear( 0): Bits: 55555555 Expected: false Result: false Correct:  true
+isClear(31): Bits: 753A96CB Expected:  true Result:  true Correct:  true
+isClear(32): Bits: FFFFFFFF Expected:  true Result:  true Correct:  true
+
+Testing toString:
+toString(): Bits:        0 Expected: 00000000000000000000000000000000 Result: 00000000000000000000000000000000 Correct:  true
+toString(): Bits: DEADBEEF Expected: 11011110101011011011111011101111 Result: 11011110101011011011111011101111 Correct:  true
+toString(): Bits:     F569 Expected: 00000000000000001111010101101001 Result: 00000000000000001111010101101001 Correct:  true
+toString(): Bits: FFFFFF0F Expected: 11111111111111111111111100001111 Result: 11111111111111111111111100001111 Correct:  true
+toString(): Bits: FFAF7FFF Expected: 11111111101011110111111111111111 Result: 11111111101011110111111111111111 Correct:  true
+
+Testing onesCount:
+onesCount(): Bits: FFFFFFFF Expected: 32 Result: 32 Correct:  true
+onesCount(): Bits:        0 Expected:  0 Result:  0 Correct:  true
+onesCount(): Bits: 5555FFFF Expected: 24 Result: 24 Correct:  true
+onesCount(): Bits: 87654321 Expected: 13 Result: 13 Correct:  true
+
+Testing zerosCount:
+zerosCount(): Bits: FFFFFFFF Expected:  0 Result:  0 Correct:  true
+zerosCount(): Bits:        0 Expected: 32 Result: 32 Correct:  true
+zerosCount(): Bits: 5555FFFF Expected:  8 Result:  8 Correct:  true
+zerosCount(): Bits: 87654321 Expected: 19 Result: 19 Correct:  true
+
+Testing size:
+size(): Bits: FFFFFFF0 Expected: 32 Result: 32 Correct:  true
+size(): Bits: 1F4CAB04 Expected: 29 Result: 29 Correct:  true
+size(): Bits:        0 Expected:  1 Result:  1 Correct:  true
+size(): Bits:     7569 Expected: 15 Result: 15 Correct:  true

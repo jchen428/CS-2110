@@ -1,0 +1,90 @@
+==================================================================================================================
+CS2110                                             Lab #24                                             Spring 2015
+==================================================================================================================
+
+Part I - QSort
+----------------
+QSort is a nifty little function in C.  It sorts an array of things!
+
+look it up in the man pages by typing man qsort in a terminal.
+
+here is the prototype for qsort.
+
+void qsort(void *base, size_t nmemb, size_t size, int(*compar)(const void *, const void *));
+
+How would you use qsort to sort an array of integers from greatest to smallest?
+
+How would you use qsort to sort an array of *pointers* to integers from greatest to smallest?
+
+Write code that demonstrates this in a new file named fp.c
+
+Part II - Linked Lists
+-----------------------
+A linked list is being used to keep track of a list of POINT
+    structures.
+
+    The linked list node struct looks like this:
+
+    typedef struct node
+    {
+        void *data;
+        struct node *next;
+    } NODE;
+
+    sizeof(NODE) => 8
+
+    The point struct looks like this:
+
+    typedef struct
+    {
+        int x;
+        int y;
+    } POINT;
+
+    sizeof(POINT) => 8
+
+    The pointer to the head of the list:
+
+    NODE *head;
+
+    is located at address 1000.
+
+    On this machine ints and pointers are 4 bytes long.
+
+    At the moment every node in the linked list has a data pointer
+    that is pointing to a POINT struct
+
+    Here is a snapshot of memory:
+    (Note: The machine is byte addressed but we are just showing
+    memory as 4 bytes words whose addresses are multiples of 4)
+
+     All numbers are decimal (base 10 numbers)
+
+     1000: 1040
+     1004: 1048
+     1008: 1028
+     1012: 0777
+     1016: 0385
+     1020: 6000
+     1024: 5000
+     1028: 1012
+     1032: 0000
+     1036: 0654
+     1040: 1060
+     1044: 1068
+     1048: 0027
+     1052: 0285
+     1056: 0409
+     1060: 0042
+     1064: 0038
+     1068: 1020
+     1072: 1004
+
+     Draw a diagram of the linked list and all other associated data
+     structures (i.e. the POINT structures)
+
+     The diagram should be simply boxes with either numbers inside or
+     arrows pointing to other boxes.  I don't care if your ASCII art is not great!
+
+
+Put your answers in this file and rename it to lab24.txt and submit this along with any C files you made

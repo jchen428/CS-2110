@@ -1,0 +1,3 @@
+1. The purpose of a splitter is to split an input with multiple data bits into its individual bits. Yes, It can be used to join wires.
+2. Tunnels are useful because they can be used to tidy up circuits.
+3. The output given an input of 010 is 0. The output given an input of 100 is 1.

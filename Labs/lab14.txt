@@ -1,0 +1,56 @@
+CS2110                                             Lab #14                                             Spring 2015
+==================================================================================================================
+
+Objective: Reviewing pointers and some basic C concepts
+
+Pointer Tracing
+---------------
+
+For each line in the following table, show what changes after it is executed.
+You don't need to write each value on each line; only what changes on that line.
+
+Statement	|    a    |    b    |    c    |    pa    |    pb    |    pc    |
+--------------------------------------------------------------------------------
+int a = 30;	|   30    |         |         |          |          |          |
+int b = a + 5;	|         |   35    |         |          |          |          |
+int c = 67;	|         |         |   67    |          |          |          |
+int* pa = &a;	|         |         |         |    &a    |          |          |
+int* pb = &b;	|         |         |         |          |    &b    |          |
+int* pc = &c;	|         |         |         |          |          |    &c    |
+*pa = 33;	|   33    |         |         |          |          |          |
+c = 2;		|         |         |    2    |          |          |          |
+*pb = *pc;	|         |    2    |         |          |          |          |
+*pc = 20;	|         |         |   20    |          |          |          |
+*pb = 3;	|         |    3    |         |          |          |          |
+a = 2		|    2    |         |         |          |          |          |
+*pa = 3;	|    3    |         |         |          |          |          |
+
+
+
+
+Pointer Code
+------------
+
+Write a function that takes in three pointers to ints a, b, and c.
+This function will take the values stored in the pointers a and b (i.e. dereference them),
+add them, and store the result at the address pointed to by c.
+
+//code 1 here
+void func(int *pa, int *pb, int *pc) {
+	*pc = *pa + *pb;
+}
+
+
+Now write a function called swap that takes in two int pointers, a and b, and switches their values!
+
+//swap code here
+void swap(int *pa, int *pb) {
+	int *temp = *pa;
+	*pa = *pb;
+	*pb = *temp;
+}
+
+
+Deliverables
+------------
+This file named lab14.txt with the answers to the above questions.

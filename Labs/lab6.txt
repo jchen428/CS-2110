@@ -1,0 +1,73 @@
+CS2110 Lab 6				                              Spring 2015
+
+
+Put your answers in this file and submit it under the T-Square assignment.
+
+
+Problem 1
+---------
+A) The BILL 9000 computer has 16 address wires and has a 8 bit word size.
+
+The addressability of this memory is...
+8 bits
+
+
+The address space of this memory is...
+2^16 = 65536 locations
+
+
+B) The NOOB 2110 computer (also sold as the ANDREW 2110 computer in some markets)
+has 7 address wires and has a 8 bit word size.However memory addresses 0x00 - 0x1F
+are not able to be written to or read from.
+
+The addressability of this memory is...
+8 bits
+
+
+The address space of this memory is...
+2^7 - 2^5 = 96 locations
+
+
+(Some things to think about)
+- What is the addressability of your laptop computer?
+- What is the address space of your laptop computer?
+
+
+Problem 2
+---------
+
+What is the difference between combinational and sequential logic?
+Sequential logic stores information and changes its output based on the information stored.
+Combinatorial logic does not store information and always produces the same output given the same inputs.
+
+
+Complete the following table by marking an "x" where applicable.
+
+|========================================|
+| Component | Combinational | Sequential |
+|========================================|
+| ALU       |       X       |            |
+| AND GATE  |       x       |            |
+| REGISTER  |               |      X     |
+| MEMORY    |               |      X     |
+| DECODER   |       X       |            |
+| RS LATCH  |               |      X     |
+=========================================|
+
+
+Problem 3
+---------
+Make a 2-bit addressable memory that has a address space of 8. (i.e. there are 8 addresses each holding 2 bits)
+You do not need to turn this circuit in, but it is highly recommend that you actually make it.
+
+
+How many bits are there for the output of your memory?
+2 bits
+
+
+How many bits are there for the address input of the memory?
+3 bits
+
+
+
+Make sure to ask the TA's if you have any questions!

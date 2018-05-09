@@ -1,0 +1,116 @@
+==================================================================================================================
+CS2110                                             Lab #15                                             Spring 2015
+==================================================================================================================
+
+Objective: Learning about the basics of C and pointers
+
+Don't hesitate to ask the TA's for help. If you are stuck on
+one part, or not clear about what it's asking, feel free to
+ask. Remember, we are here to help you :)
+
+This is not a timed lab, so talk with your friends, use the book, use a TA, etc.
+
+POINTERS
+--------
+A sample memory view is shown below. Note that at address 0x06000000 the value 0x00 is stored, at 0x06000001 the 
+value 0x01 is stored, 0x06000002 0x02, 0x06000013 0xE2
+You get the picture?  GREAT!
+
+0x06000000	0x00	0x01	0x02	0x03
+0x06000004	0x20	0x56	0x33	0x42
+0x06000008	0xFF	0xFF	0xFF	0xFF
+0x0600000C	0x72	0x5C	0x83	0x75
+0x06000010	0x2B	0x17	0x88	0xE2
+0x06000014	0xCA	0xFC	0x34	0xDC
+0x06000018	0x1F	0xB4	0xF2	0x11
+0x0600001C	0x21	0x11	0xC0	0xDA
+
+int* ptr1 = (int*) 0x06000004;
+short* ptr2 = (short*) 0x06000014;
+char* ptr3 = (char*) 0x06000011;
+short* ptr4 = (short*) 0x0600000A;
+
+For each expression (below) involving the pointers above, tell me
+1) What address it evaluates to?
+2) Dereference the expression and tell me the value (in hex).  Remember that these pointers are pointing at 
+   different types. Remember char = 1 byte, short = 2 bytes, int = 4 bytes so if I dereference an int pointer I 
+   should get 4 bytes.  If you want to ask what endianness to express your answers in then assume big endian. 
+   (if you don't know what the word endianness means then ignore the previous sentence).
+
+
+a) ptr1 + 3
+0x06000007
+0x00000042
+
+
+b) ptr2 - 1
+0x06000013
+0x00E2
+
+
+c) ptr4
+0x0600000A
+0x00FF
+
+
+d) ptr3 + 9
+0x0600001A
+0xF2
+
+
+CTypes
+------
+When you get an error in C, it is often very useful to analyze the types of expressions to understand the error message.
+
+For example, you all should know that this will generate a warning:
+int* x = 0x6000000;
+
+As you can see, the left hand side wants an int pointer.
+However the right hand side is an integer.
+And you can't store an int into something that wants an int pointer.
+
+Remember, the rules for promotion which you learned in 1331 still apply. Meaning if something wants an int you can give it a short and it will be promoted.  This property does not hold for pointers, however; an int* will not be promoted to a double* for instance.  Pointers must be of the exact same type for the assignment to work.
+Remember that an array can be treated as a pointer to the first element in the array (however you can't say an array is the same thing as a pointer!)
+
+To make things even more insane you can have a pointer to a pointer to a pointer.
+int*** imatriplepointer.
+
+
+So for each <<assignment statement>> tell me if it is syntactically correct or not, and why.
+Assume that all statements before assignment will work.
+
+1) int a;
+   int b = &a;
+No, b is expecting an int but is given an address
+
+2) int* a;
+   *a = a;
+No, *a is an int pointer but a is an int
+
+3) #define GIMME *(u32*) 0x3000
+   u32 c;
+   GIMME = &c;
+No, GIMME is an unsigned int but is given an address
+
+4) #define GIMME *(u32*) 0x3000
+   u16 d;
+   GIMME = d;
+Yes, GIMME is an unsigned int and is given an unsigned short, which is promoted to an unsigned int
+
+5) char** a;
+   char* b;
+   char*** c;
+
+   1. b = *a;
+   2. c = &b;
+   3. a = *c;
+Yes, b is a char pointer pointing to the pointer for a
+Yes, c is a char pointer pointing to the address of b
+Yes, a is a char poitner pointing to the pointer for c
+
+6) #define GIMME *(u32**) 0x3000
+   u16 d;
+   GIMME = &d;
+No, GIMME is an unsigned int pointer but is given an unsigned short pointer.
+
+Put your answers in this file and rename it to lab15.txt

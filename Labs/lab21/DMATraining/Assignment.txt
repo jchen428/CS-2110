@@ -1,0 +1,9 @@
+Look in the main.c files of all of the folders for the assignment.
+
+Follow the comments.
+
+Please perform make clean in all of the directories before submitting.
+
+The problems are sorted by difficulty. 
+
+Finish as much as you can, but turn in everything.
